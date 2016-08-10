@@ -1,0 +1,1 @@
+var WeddingApp = angular.module('WeddingApp', ['ngMaterial', 'ngMessages']);
