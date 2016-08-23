@@ -1,0 +1,28 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	
+   <context:component-scan base-package="com.weddingapp.nickkaty.config" />
+   <context:component-scan base-package="com.weddingapp.nickkaty.controller" />
+   <context:component-scan base-package="com.weddingapp.nickkaty.domain" />
+   <context:component-scan base-package="com.weddingapp.nickkaty.repository" />
+   <context:component-scan base-package="com.weddingapp.nickkaty.service" />
+   
+   
+   <!-- Habilita o uso de anotacoes para o Spring MVC. -->
+    <mvc:annotation-driven />
+
+    <!-- Permite utilizar a barra ("/") como conteudo mapeado pelo Spring MVC. -->
+    <mvc:default-servlet-handler />
+
+    <!-- Ativa o uso de anotacoes complementares ao contexto do Spring. -->
+    <context:annotation-config />
+    
+</beans>
