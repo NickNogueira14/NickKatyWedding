@@ -1,5 +1,7 @@
 package com.weddingapp.nickkaty.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.googlecode.objectify.Key;
@@ -53,5 +55,7 @@ public interface IGuestService {
      * @return
      */
     Guest findByEmail(final String email);
+
+    List<Guest> findAll();
 
 }

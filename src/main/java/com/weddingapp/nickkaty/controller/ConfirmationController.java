@@ -1,15 +1,13 @@
 package com.weddingapp.nickkaty.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.weddingapp.nickkaty.domain.Guest;
 import com.weddingapp.nickkaty.service.IGuestService;
@@ -21,7 +19,7 @@ import com.weddingapp.nickkaty.service.IGuestService;
  * @author <a href="mailto:viniceranogueira@gmail.com">Vinicius Nogueira</a>
  * 
  */
-@RestController
+@Controller
 @RequestMapping(value = "/confirmation")
 public class ConfirmationController {
 
@@ -29,16 +27,22 @@ public class ConfirmationController {
     private IGuestService guestService;
 
     @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String addGuestConfirmation(@RequestBody Guest guest, HttpServletRequest request,
-            HttpServletResponse response) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public Guest addGuestConfirmation(@RequestBody Guest guest) {
 
         if (guestService.save(guest) != null) {
-            return "OK";
+            return guestService.findByName(guest.getGuestName());
         } else {
-            return "FAIL";
+            return new Guest();
         }
 
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    public List<Guest> findAll() {
+
+        return guestService.findAll();
     }
 
 }

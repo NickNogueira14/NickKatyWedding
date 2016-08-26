@@ -1,5 +1,7 @@
 package com.weddingapp.nickkaty.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +76,16 @@ public class GuestService implements IGuestService {
     @Override
     public Guest findByEmail(String email) {
         return guestRepository.findByEmail(email);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.weddingapp.nickkaty.service.IGuestService#findAll()
+     */
+    @Override
+    public List<Guest> findAll() {
+        return guestRepository.findAll();
     }
 
 }

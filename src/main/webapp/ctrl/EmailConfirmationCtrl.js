@@ -64,24 +64,21 @@ WeddingApp.controller('EmailConfirmationCtrl', function($scope, $mdDialog, $http
 	$scope.guestConfirmation = function(){
 		
 		var guestConf = {
-				"guestKey" : 123123,
-				"guestName" : $scope.guest.guestName,
-				"guestEmail" : $scope.guest.guestEmail,
-				"guestTelephone" : $scope.guest.guestTelephone,
-				"quantityAddGuests" : $scope.guest.quantityAddGuests,
-				"guestNotes" : $scope.guest.guestNotes
+				guestName : $scope.guest.guestName,
+				guestEmail : $scope.guest.guestEmail,
+				guestTelephone : $scope.guest.guestTelephone,
+				quantityAddGuests : $scope.guest.quantityAddGuests,
+				guestNotes : $scope.guest.guestNotes
 		}
 		$http({
 			method: 'POST',
 			url: 'confirmation/add',
-			data: angular.toJson(guestConf),
-			headers: { 'Content-Type' : 'application/json'}
-		}).success(function(data, status){
-			$scope.guest = angular.copy(data);
-			$scope.confirmGuest();
-			console.log("SUCESSO!!!")
-		}).error(function(data, status){
-			console.log("FALHOU!!!")
+			data: angular.toJson(guestConf)
+		}).success(function(data){
+			$scope.guest = data;
+			console.log("SUCESSO!!!");
+		}).error(function(data){
+			console.log(data);
 		});
 	}
 	

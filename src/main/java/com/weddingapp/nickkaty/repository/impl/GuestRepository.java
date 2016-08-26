@@ -2,6 +2,8 @@ package com.weddingapp.nickkaty.repository.impl;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.googlecode.objectify.Key;
@@ -71,6 +73,16 @@ public class GuestRepository implements IGuestRepository {
     @Override
     public Guest findByEmail(String email) {
         return ofy().load().type(Guest.class).filter("guestEmail", email).first().now();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.weddingapp.nickkaty.repository.IGuestRepository#findAll()
+     */
+    @Override
+    public List<Guest> findAll() {
+        return ofy().load().type(Guest.class).list();
     }
 
 }

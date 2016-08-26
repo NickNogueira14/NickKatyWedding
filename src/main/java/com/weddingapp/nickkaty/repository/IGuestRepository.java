@@ -1,5 +1,7 @@
 package com.weddingapp.nickkaty.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.googlecode.objectify.Key;
@@ -53,5 +55,7 @@ public interface IGuestRepository {
      * @return
      */
     Guest findByEmail(final String email);
+
+    List<Guest> findAll();
 
 }
