@@ -9,33 +9,25 @@ WeddingApp.controller('EmailConfirmationCtrl', function($scope, $mdDialog, $http
 			guestNotes: ''
 	};
 	$scope.showForm = false;
+	$scope.goHome = false;
+	$scope.currentNavItem = 'page1';
 	
 	$scope.showAlert = function(ev) {
 		$mdDialog.show(
-			$mdDialog.alert()
+			$mdDialog.confirm()
 				.clickOutsideToClose(false)
-				.title('Registro das Informações')
-				.textContent('Por favor, preencha o formulário com as informações necessárias.')
-				.ariaLabel('Registro das Informações')
-				.ok('Preencher')
-		).finally(function(){
+				.title('Validação de e-mail')
+				.textContent('E-mail validado com sucesso! Deseja confirmar sua presença agora?')
+				.ariaLabel('Verificação de e-mail')
+				.ok('Sim')
+				.cancel('Não')
+		).then(function(){
 			$scope.showForm = true;
+			$scope.goHome = false;
+		}, function(){
+			$scope.goHome = true;
+			$scope.showForm = false;
 		});
-	};
-	
-	$scope.confirmGuests = function() {
-		$mdDialog.show(
-			$mdDialog.alert()
-			.title('Confirmação das Informações')
-			.textContent('Guest Key: ' + $scope.guest.guestKey +
-						'Nome: ' + $scope.guest.name + 
-						'\nTelefone: ' + $scope.guest.telephone + 
-						'\nE-Mail: ' + $scope.guest.email + 
-						'\nConvidados Adicionais: ' + $scope.guest.addGuests + 
-						'\nObservações: ' + $scope.guest.notes)
-			.ariaLabel('Confirmação das Informações')
-			.ok('Confirmar')
-		);
 	};
 	
 	$scope.cancelConfirmation = function(ev) {
