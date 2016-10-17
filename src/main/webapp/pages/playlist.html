@@ -1,1 +1,29 @@
-<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12173042140%3Aplaylist%3A10czaA6pcbectFgUwMLMlK" width="500" height="580" frameborder="0" allowtransparency="true"></iframe>
+<md-content layout="row" ng-cloak style="width: 900px;">
+    <div class="playlistSize" style="background-color: #181818;">
+        <div>
+	        <md-radio-group ng-model="obj.selectType" class="md-primary" layout="row" layout-align="space-around center" style="margin-bottom: 0px;">
+		        <md-radio-button value="artist">Artista</md-radio-button>
+		        <md-radio-button value="album">Album</md-radio-button>
+		        <md-radio-button value="track">M&uacute;sica</md-radio-button>
+		    </md-radio-group>
+	    </div>
+	    <div layout="row" layout-align="end center" class="formFields">
+		    <md-input-container style="width: 100%;">
+		       <label>Search</label>
+		       <input ng-model="obj.selectFilter">
+		    </md-input-container>
+		    <md-button class="md-raised md-primary" ng-click="search()">Buscar</md-button>
+	    </div>
+	    <div class="spotifyList">
+	       <md-list>
+	           <md-list-item ng-repeat="item in artistList track by item.artistId" ng-click="" class="noright listStyle">
+	               <img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
+	               <p ng-bind="item.artistName" class="spotifyArtistName">
+	           </md-list-item>
+	       </md-list>
+	    </div>
+    </div>
+	<iframe
+	    src="https://embed.spotify.com/?uri=spotify%3Auser%3A12173042140%3Aplaylist%3A10czaA6pcbectFgUwMLMlK"
+	    class="playlistSize" frameborder="0" allowtransparency="true"></iframe>
+</md-content>

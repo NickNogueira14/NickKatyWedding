@@ -1,4 +1,4 @@
-WeddingApp.controller('EmailConfirmationCtrl', function($scope, $mdDialog, $http){
+WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', function($scope, $mdDialog, $http){
 	
 	$scope.guest = {
 			guestKey: null,
@@ -10,7 +10,6 @@ WeddingApp.controller('EmailConfirmationCtrl', function($scope, $mdDialog, $http
 	};
 	$scope.showForm = false;
 	$scope.goHome = false;
-	$scope.currentNavItem = 'page1';
 	
 	$scope.showAlert = function(ev) {
 		$mdDialog.show(
@@ -61,7 +60,7 @@ WeddingApp.controller('EmailConfirmationCtrl', function($scope, $mdDialog, $http
 				guestTelephone : $scope.guest.guestTelephone,
 				quantityAddGuests : $scope.guest.quantityAddGuests,
 				guestNotes : $scope.guest.guestNotes
-		}
+		};
 		$http({
 			method: 'POST',
 			url: 'confirmation/add',
@@ -72,6 +71,6 @@ WeddingApp.controller('EmailConfirmationCtrl', function($scope, $mdDialog, $http
 		}).error(function(data){
 			console.log(data);
 		});
-	}
+	};
 	
-});
+}]);

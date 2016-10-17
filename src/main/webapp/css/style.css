@@ -42,7 +42,8 @@ body {
 }
 
 .formFields {
-	margin: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 .homeStyle {
@@ -77,4 +78,35 @@ md-tab-item:hover {
 .tabContent {
 	width: 70%;
 	left: 15%;
+}
+
+.playlistSize {
+	width: 50%;
+	height: 550px;
+}
+
+.listStyle {
+	height: 70px;
+	border-bottom: 1px solid #0ABAB5;
+	border-top: 1px solid #0ABAB5;
+}
+
+.spotifyArtistImg {
+	width: 50px;
+	padding-right: 10px;
+}
+
+.spotifyArtistName {
+	padding: 10px;
+	font-size: 14px;
+}
+
+.spotifyList {
+	height: 408px;
+	overflow: auto;
+}
+
+.iconsList {
+	color: #0ABAB5;
+	font-size: 12px;
 }
