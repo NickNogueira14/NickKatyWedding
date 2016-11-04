@@ -1,1 +1,1 @@
-var WeddingApp = angular.module('WeddingApp', ['ngMaterial', 'ngMessages']);
+var WeddingApp = angular.module('WeddingApp', ['ngMaterial', 'ngMessages', 'ngMdIcons']);

@@ -75,9 +75,13 @@ md-tab-item:hover {
 	color: rgba(255, 255, 255, 0.7) !important;
 }
 
+.md-tab {
+	font-size: 12px;
+}
+
 .tabContent {
-	width: 70%;
-	left: 15%;
+	width: 80%;
+	margin: auto;
 }
 
 .playlistSize {
@@ -98,7 +102,7 @@ md-tab-item:hover {
 
 .spotifyArtistName {
 	padding: 10px;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .spotifyList {
@@ -106,7 +110,26 @@ md-tab-item:hover {
 	overflow: auto;
 }
 
+.spotifyAlbumText {
+	margin: 2px;
+	width: 270px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .iconsList {
+	font-size: 30px;
 	color: #0ABAB5;
-	font-size: 12px;
+	position: absolute;
+	right: 15px;
+}
+
+.material-icons.cursor {
+	cursor: pointer;
+}
+
+.material-icons:hover {
+	color: #FFFFFF;
+	background-color: #0ABAB5; 
 }
