@@ -11,7 +11,7 @@
 	    <div layout="row" layout-align="end center" class="formFields">
 		    <md-input-container style="width: 100%;">
 		       <label>Search</label>
-		       <input ng-model="obj.selectFilter">
+		       <input ng-model="obj.selectFilter" ng-enter="search()">
 		    </md-input-container>
 		    <md-button class="md-raised md-primary" ng-click="search()">Buscar</md-button>
 	    </div>
@@ -23,8 +23,10 @@
 	               		<h3 ng-bind="item.artistName" class="spotifyAlbumText"></h3>
 	               	</div>
 	               	<div class="iconsList">
-	               		<i class="material-icons cursor">album</i>
-	               		<i class="material-icons cursor">queue_music</i>
+	               		<md-button class="material-icons spotifyListButton" title="Visualizar Albuns" ng-click="getAlbumsFromArtist(item)" 
+	               					aria-label="Visualizar Albuns do Artista">album</md-button>
+	               		<md-button class="material-icons spotifyListButton" title="Visualizar Musicas mais populares" 
+	               					ng-click="getTopTracksFromArtist(item)" aria-label="Visualizar Musicas mais populares">queue_music</md-button>
 	               	</div>
 	           	</md-list-item>
 	       	</md-list>
@@ -38,7 +40,8 @@
 	               		<p ng-bind="item.artistName" class="spotifyAlbumText"></p>
 	               	</div>
 	               	<div class="iconsList">
-	               		<i class="material-icons cursor">queue_music</i>
+	               		<md-button class="material-icons spotifyListButton" title="Visualizar Músicas" ng-click="getTracksFromAlbum(item)" 
+	               					aria-label="Visualizar Músicas do Album">queue_music</md-button>
 	               	</div>
 	           	</md-list-item>
 	       	</md-list>
@@ -53,7 +56,11 @@
 	               		<p ng-bind="item.artistName" class="spotifyAlbumText"></p>
 	               	</div>
 	               	<div class="iconsList">
-	               		<i class="material-icons cursor">queue_music</i>
+	               		<md-button ng-href="{{item.trackExternalUrl}}" target="_blank" aria-label="Abrir com Spotify" class="spotifyListButton">
+	               			<img ng-src="../images/icons/spotify.png" class="spotifyLogo" />
+	               		</md-button>
+	               		<md-button class="material-icons spotifyListButton" title="Add to Playlist" ng-click="addTrackToPlaylist(item)" 
+	               					aria-label="Adicionar na Playlist">playlist_add</md-button>
 	               	</div>
 	           	</md-list-item>
 	       	</md-list>

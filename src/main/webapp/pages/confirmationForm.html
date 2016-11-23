@@ -3,22 +3,29 @@
 	<form id="guestForm">
 		<div layout-gt-sm="row">
 			<md-input-container class="formFields md-block" flex="70" flex-gt-sm>
-			<label>Nome Completo</label> <input ng-model="guest.guestName" /> </md-input-container>
+				<label>Nome Completo</label>
+				<input ng-model="guest.guestName" />
+			</md-input-container>
 			<md-input-container class="formFields md-block" flex="30" flex-gt-sm>
-			<label>Telefone</label> <input ng-model="guest.guestTelephone" /> </md-input-container>
+				<label>Telefone</label>
+				<input ng-model="guest.guestTelephone" />
+			</md-input-container>
 		</div>
 		<div layout-gt-sm="row">
 			<md-input-container class="formFields md-block" flex="70" flex-gt-sm>
-			<label>E-Mail</label> <input ng-model="guest.guestEmail" /> </md-input-container>
+				<label>E-Mail</label>
+				<input ng-model="guest.guestEmail" />
+			</md-input-container>
 			<md-input-container class="formFields md-block" flex="30" flex-gt-sm>
-			<label>Quantidade de Acompanhantes</label> <input
-				ng-model="guest.quantityAddGuests" /> </md-input-container>
+				<label>Quantidade de Acompanhantes</label>
+				<input type="number" ng-model="guest.quantityAddGuests" />
+			</md-input-container>
 		</div>
 		<md-input-container class="formFields md-block" flex="100">
-		<label>Observa&ccedil;&otilde;es</label> <textarea
-			ng-model="guest.guestNotes" md-maxlength="250" rows="3">
-                </textarea> </md-input-container>
-		<div layout-gt-sm="row" style="text-align: center;">
+			<label>Observa&ccedil;&otilde;es</label>
+			<textarea ng-model="guest.guestNotes" md-maxlength="250" rows="3"> </textarea>
+		</md-input-container>
+		<div layout-gt-sm="row" layout-align="space-around center" style="text-align: center;">
 			<md-button class="md-raised md-primary"
 				ng-click="guestConfirmation()">Confirmar Convidados</md-button>
 			<md-button class="md-raised md-primary"
