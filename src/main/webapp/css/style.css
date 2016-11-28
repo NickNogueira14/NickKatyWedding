@@ -162,3 +162,43 @@ md-tab-item:hover {
 .giftImgList {
 	height: 100%;
 }
+
+.signField {
+	width: 50%;
+	margin-top: 0px;
+}
+
+.messageField {
+	width: 100%;
+	margin-bottom: 0px;
+}
+
+.formWidth {
+	width: 70%;
+}
+
+.sendMsgField {
+	width: 20%;
+}
+
+.msgListheader {
+	padding-bottom: 25px;
+}
+
+.msgListBorder {
+	border-top: 1px solid #0ABAB5;
+	color: #0ABAB5;
+	width: 100%;
+}
+
+.msgListAuthor {
+	float: left;
+}
+
+.msgListDate {
+	float: right;
+}
+
+.msgListContent {
+	clear: both;
+}

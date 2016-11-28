@@ -5,10 +5,10 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 /**
- * 
+ * Entity that references the Kind Guest in Datastore
  * 
  * @since 18 de ago de 2016
- * @author <a href="mailto:viniceranogueira@gmail.com">Vinicius Nogueira</a>
+ * @author <a href="mailto:comp.vinicius@gmail.com">Vinicius Nogueira</a>
  * 
  */
 @Entity

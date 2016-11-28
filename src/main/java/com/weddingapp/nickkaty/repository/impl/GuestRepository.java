@@ -14,7 +14,7 @@ import com.weddingapp.nickkaty.repository.IGuestRepository;
  * Repository implementation to access the {@link Guest} information
  * 
  * @since 18 de ago de 2016
- * @author <a href="mailto:viniceranogueira@gmail.com">Vinicius Nogueira</a>
+ * @author <a href="mailto:comp.vinicius@gmail.com">Vinicius Nogueira</a>
  * 
  */
 @Repository

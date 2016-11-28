@@ -6,12 +6,13 @@ import javax.servlet.ServletContextListener;
 import com.googlecode.objectify.ObjectifyService;
 import com.weddingapp.nickkaty.domain.AdditionalGuest;
 import com.weddingapp.nickkaty.domain.Guest;
+import com.weddingapp.nickkaty.domain.MessageToCouple;
 
 /**
  * Initial setup before the web application start.
  * 
  * @since Aug 18, 2016
- * @author <a href="mailto:viniceranogueira@gmail.com">Vinicius Nogueira</a>
+ * @author <a href="mailto:comp.vinicius@gmail.com">Vinicius Nogueira</a>
  */
 public class OfyInitSetup implements ServletContextListener {
 
@@ -24,6 +25,7 @@ public class OfyInitSetup implements ServletContextListener {
     public void contextInitialized(ServletContextEvent arg0) {
         ObjectifyService.register(Guest.class);
         ObjectifyService.register(AdditionalGuest.class);
+        ObjectifyService.register(MessageToCouple.class);
     }
 
 }

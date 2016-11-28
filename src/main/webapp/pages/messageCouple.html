@@ -1,0 +1,30 @@
+<md-content layout-padding md-theme="default" ng-cloak class="transparentField" ng-init="loadMessages()">
+	<form id="messageForm">
+		<section layout="row" layout-sm="column" layout-align="center center">
+			<md-input-container class="formFields messageField md-block">
+				<label>Mensagem</label>
+				<textarea ng-model="message.messageContent" md-maxlength="300" rows="5" md-no-autogrow> </textarea>
+			</md-input-container>
+		</section>
+		<section layout="row" layout-sm="column" layout-align="space-between start">
+			<md-input-container class="formFields signField md-block">
+				<label>Assinatura</label>
+				<input ng-model="message.messageAuthor" />
+			</md-input-container>
+			<md-button class="sendMsgField md-raised md-primary" ng-click="sendMessage()">Enviar</md-button>
+		</section>
+	</form>
+	<div>
+		<md-list>
+			<md-list-item ng-repeat="msg in messageList | orderBy: '-messageCreate' track by msg.messageKey" md-3-line md-long-text>
+				<div class="md-list-item-text msgListBorder">
+					<h3 class="msgListheader">
+						<span ng-bind="msg.messageAuthor" class="msgListAuthor"></span>
+						<span ng-bind="msg.messageCreate | date:'dd/MM/yyyy'" class="msgListDate"></span>
+					</h3>
+					<p ng-bind="msg.messageContent" class="msgListContent"></p>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-content>
