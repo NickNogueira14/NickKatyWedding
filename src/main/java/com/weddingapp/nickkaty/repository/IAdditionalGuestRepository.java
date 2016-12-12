@@ -47,5 +47,5 @@ public interface IAdditionalGuestRepository {
      * @param guest
      * @return
      */
-    List<AdditionalGuest> findByMainGuest(final Guest guest);
+    List<AdditionalGuest> findByMainGuest(final Long maindGuestId);
 }

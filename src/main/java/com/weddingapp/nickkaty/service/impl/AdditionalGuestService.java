@@ -63,8 +63,8 @@ public class AdditionalGuestService implements IAdditionalGuestService {
      * @return
      */
     @Override
-    public List<AdditionalGuest> findByMainGuest(Guest guest) {
-        return additionalGuestRepository.findByMainGuest(guest);
+    public List<AdditionalGuest> findByMainGuest(Long mainGuestId) {
+        return additionalGuestRepository.findByMainGuest(mainGuestId);
     }
 
 }

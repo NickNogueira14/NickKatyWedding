@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weddingapp.nickkaty.domain.AdditionalGuest;
 import com.weddingapp.nickkaty.domain.Guest;
+import com.weddingapp.nickkaty.service.IAdditionalGuestService;
 import com.weddingapp.nickkaty.service.IGuestService;
 
 /**
@@ -25,13 +27,26 @@ public class ConfirmationController {
 
     @Autowired
     private IGuestService guestService;
+    
+    @Autowired
+    private IAdditionalGuestService additionalGuestService;
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Guest addGuestConfirmation(@RequestBody Guest guest) {
 
         if (guestService.save(guest) != null) {
-            return guestService.findByName(guest.getGuestName());
+        	
+        	for(AdditionalGuest addGuest : guest.getAdditionalGuestsList()){
+        		addGuest.setMainGuestId(guest.getGuestKey());
+        		additionalGuestService.save(addGuest);
+        	}
+        	
+        	Guest result = new Guest();
+        	result = guestService.findByName(guest.getGuestName());
+        	result.setAdditionalGuestsList(additionalGuestService.findByMainGuest(result.getGuestKey()));
+        	
+            return result;
         } else {
             return new Guest();
         }

@@ -61,8 +61,8 @@ public class AdditionalGuestRepository implements IAdditionalGuestRepository {
      * @return
      */
     @Override
-    public List<AdditionalGuest> findByMainGuest(Guest guest) {
-        return ofy().load().type(AdditionalGuest.class).filter("mainGuest", guest).list();
+    public List<AdditionalGuest> findByMainGuest(Long maindGuestId) {
+        return ofy().load().type(AdditionalGuest.class).filter("mainGuestId", maindGuestId).list();
     }
 
 }

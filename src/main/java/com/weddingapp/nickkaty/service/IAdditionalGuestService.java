@@ -47,6 +47,6 @@ public interface IAdditionalGuestService {
      * @param guest
      * @return
      */
-    List<AdditionalGuest> findByMainGuest(final Guest guest);
+    List<AdditionalGuest> findByMainGuest(final Long mainGuestId);
 
 }

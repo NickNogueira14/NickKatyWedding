@@ -1,13 +1,23 @@
 WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', function($scope, $mdDialog, $http){
 	
+	$scope.addGuest = {
+			addGuestId: null,
+			addGuestName: null,
+			addGuestAge: null,
+			addGuestNameLabel: null,
+			addGuestAgeLabel: null
+	};
+	
 	$scope.guest = {
 			guestKey: null,
-			guestName: '',
-			guestEmail: '',
-			guestTelephone: '',
-			quantityAddGuests: 0,
-			guestNotes: ''
+			guestName: null,
+			guestEmail: null,
+			guestTelephone: null,
+			quantityAddGuests: null,
+			addGuestList: [],
+			guestNotes: null
 	};
+	
 	$scope.showForm = false;
 	$scope.goHome = false;
 	
@@ -29,6 +39,17 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 		});
 	};
 	
+	$scope.showSuccess = function(ev) {
+		$mdDialog.show(
+				$mdDialog.alert()
+					.clickOutsideToClose(true)
+					.title('Presença Confirmada com Sucesso!')
+					.ariaLabel('Presença Confirmada com Sucesso')
+					.ok('OK')
+					.targetEvent(ev)
+		);
+	}
+	
 	$scope.cancelConfirmation = function(ev) {
 		$mdDialog.show(
 			$mdDialog.confirm()
@@ -43,13 +64,16 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 			});
 	};
 	
-	resetFields = function(){
-		$scope.guest.name = '';
-		$scope.guest.email = '';
-		$scope.guest.telephone = '';
-		$scope.guest.addGuests = 0;
-		$scope.guest.notes = '';
-		$scope.showForm = false;
+	var resetFields = function(){
+		$scope.guest = {
+				guestKey: null,
+				guestName: null,
+				guestEmail: null,
+				guestTelephone: null,
+				quantityAddGuests: null,
+				addGuestList: [],
+				guestNotes: null
+		};
 	};
 	
 	$scope.guestConfirmation = function(){
@@ -59,6 +83,7 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 				guestEmail : $scope.guest.guestEmail,
 				guestTelephone : $scope.guest.guestTelephone,
 				quantityAddGuests : $scope.guest.quantityAddGuests,
+				additionalGuestsList: $scope.guest.addGuestList,
 				guestNotes : $scope.guest.guestNotes
 		};
 		$http({
@@ -66,11 +91,43 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 			url: 'confirmation/add',
 			data: angular.toJson(guestConf)
 		}).success(function(data){
-			$scope.guest = data;
-			console.log("SUCESSO!!!");
+			$scope.showSuccess();
+			resetFields();
 		}).error(function(data){
 			console.log(data);
 		});
 	};
+	
+	$scope.insertAdditionalGuestsFields = function() {
+		
+		var addGuestListAux = $scope.guest.addGuestList;
+		
+		$scope.guest.addGuestList = [];
+		
+		if($scope.guest.quantityAddGuests != null && $scope.guest.quantityAddGuests > 0){
+			for(var i=0; i < $scope.guest.quantityAddGuests; i++) {
+				if(angular.isDefined(addGuestListAux[i])) {
+					var addGuest = {
+							addGuestId: 'addGuest' + i,
+							addGuestName: addGuestListAux[i].addGuestName,
+							addGuestAge: addGuestListAux[i].addGuestAge,
+							addGuestNameLabel: 'Nome do Acompanhante ' + (i + 1),
+							addGuestAgeLabel: 'Idade do Acompanhante ' + (i + 1)
+					};
+				} else {
+					var addGuest = {
+							addGuestId: 'addGuest' + i,
+							addGuestName: null,
+							addGuestAge: null,
+							addGuestNameLabel: 'Nome do Acompanhante ' + (i + 1),
+							addGuestAgeLabel: 'Idade do Acompanhante ' + (i + 1)
+					};
+				}
+				
+				$scope.guest.addGuestList.push(addGuest);
+			}
+		}
+	};
+	
 	
 }]);
