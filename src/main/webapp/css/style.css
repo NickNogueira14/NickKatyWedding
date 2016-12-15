@@ -1,3 +1,9 @@
+@font-face {
+	font-family: wedding;
+	src: url(../fonts/BrockScript.ttf);
+}
+
+
 body {
 	background-color: rgba(0, 0, 0, 0.05);
 }
@@ -201,4 +207,20 @@ md-tab-item:hover {
 
 .msgListContent {
 	clear: both;
+}
+
+.aboutWedding {
+	font-size: 20px;
+	text-align: center;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.aboutWeddingButtonImg {
+	height: 80%;
+}
+
+.aboutWeddingButton {
+	height: 250px;
+	padding: 8px;
 }
