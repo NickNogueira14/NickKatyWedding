@@ -224,3 +224,17 @@ md-tab-item:hover {
 	height: 250px;
 	padding: 8px;
 }
+
+.imgPictureWidth {
+	width: 100%;
+}
+
+.imgPictureHeight {
+	height: 100%;
+}
+
+.picturebox {
+	height:300px;
+	width: 450px;
+	float: right;
+}
