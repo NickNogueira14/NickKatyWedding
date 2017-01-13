@@ -343,23 +343,49 @@ WeddingApp.controller('PlaylistCtrl',
 			
 			$scope.addTrackToPlaylist = function(track) {
 				
-				$http({
-					method : 'JSONP',
-					url : 'https://accounts.spotify.com/authorize'
-						+ '?client_id=6b77a78573a94a068f260729bbe67330'
-						+ '&response_type=code'
-						+ '&redirect_uri=http%3A%2F%2Flocalhost:8080%2Fplaylist.html'
-						+ '&scope=playlist-modify-public playlist-modify-private',
-					headers: {
-			                "Accept" : "application/json; charset=utf-8",
-			                "Content-Type": "application/javascript; charset=utf-8",
-			                "Access-Control-Allow-Origin" : "*"
-			        }
-				}).success(function(data) {
-					console.log('S - ' + data);
-				}).error(function(data) {
-					console.log('E - ' + data);
-				});
+				var authCode = '6b77a78573a94a068f260729bbe67330:2122ac41378f4cb6bc6bba92860cee2f';
+				var spotify = new SpotifyWebApi();
+				
+				spotify.addTracksToPlaylist('6b77a78573a94a068f260729bbe67330', '10czaA6pcbectFgUwMLMlK', track.trackSpotifyUri)
+					.then(function(data) {
+						console.log(data);
+					}, function(error) {
+						console.log(error);
+					});
+				
+//				$http.defaults.headers.common.Authorization = 'Basic ' + authCode;
+//				$http({
+//					method : 'POST',
+//					url : 'https://accounts.spotify.com/api/token',
+//					data : {
+//						'grant_type' : 'client_credentials'
+//					},
+//					header : {
+//						'Content-Type' : 'application/json'
+//					}
+//				}).success(function(data) {
+//					console.log('SUCCESS: ' + data);
+//				}).error(function(data) {
+//					console.log('ERROR: ' + data);
+//				});
+				
+//				$http({
+//					method : 'JSONP',
+//					url : 'https://accounts.spotify.com/authorize'
+//						+ '?client_id=6b77a78573a94a068f260729bbe67330'
+//						+ '&response_type=code'
+//						+ '&redirect_uri=http%3A%2F%2Flocalhost:8080%2Fplaylist.html'
+//						+ '&scope=playlist-modify-public playlist-modify-private',
+//					headers: {
+//			                "Accept" : "application/json; charset=utf-8",
+//			                "Content-Type": "application/javascript; charset=utf-8",
+//			                "Access-Control-Allow-Origin" : "*"
+//			        }
+//				}).success(function(data) {
+//					console.log('S - ' + data);
+//				}).error(function(data) {
+//					console.log('E - ' + data);
+//				});
 				console.log("ADD PLAYLIST" + track.trackName + track.trackSpotifyUri);
 			}
 
