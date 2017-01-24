@@ -1,45 +1,45 @@
 <md-content layout-padding md-theme="default" class="transparentField">
+<md-progress-circular md-mode="indeterminate" ng-show="messageLoading" class="loadingComponent" md-diameter="70"></md-progress-circular>
 <div>
 	<form id="guestForm" name="guestForm" ng-submit="guestConfirmation()">
 		<div layout-gt-sm="row">
 			<md-input-container class="formFields md-block" flex="70" flex-gt-sm>
 				<label>Nome Completo</label>
-				<input required name="guestName" ng-model="guest.guestName" />
+				<input required name="guestName" ng-model="guest.guestName" ng-disabled="messageLoading" />
 			</md-input-container>
 			<md-input-container class="formFields md-block" flex="30" flex-gt-sm>
 				<label>Telefone</label>
-				<input ng-model="guest.guestTelephone" />
+				<input ng-model="guest.guestTelephone" ng-disabled="messageLoading" />
 			</md-input-container>
 		</div>
 		<div layout-gt-sm="row">
 			<md-input-container class="formFields md-block" flex="70" flex-gt-sm>
 				<label>E-Mail</label>
-				<input required ng-model="guest.guestEmail" type="email" ng-pattern="/^.+@.+\..+$/" name="guestEmail" />
+				<input required ng-model="guest.guestEmail" type="email" ng-pattern="/^.+@.+\..+$/" name="guestEmail" ng-disabled="messageLoading" />
 			</md-input-container>
 			<md-input-container class="formFields md-block" flex="30" flex-gt-sm>
 				<label>Quantidade de Acompanhantes</label>
-				<input type="number" required name="quantityAddGuests" ng-model="guest.quantityAddGuests" ng-blur="insertAdditionalGuestsFields()" />
+				<input type="number" required name="quantityAddGuests" ng-model="guest.quantityAddGuests" ng-blur="insertAdditionalGuestsFields()" ng-disabled="messageLoading" />
 			</md-input-container>
 		</div>
 		<div ng-repeat="addGuest in guest.addGuestList" layout-gt-sm="row" class="formFields">
 			<md-input-container class="formFields md-block" flex="70" flex-gt-sm>
 				<label ng-bind="addGuest.addGuestNameLabel"></label>
-				<input required name="addGuest.addGuestNameLabel" ng-model="addGuest.addGuestName" />
+				<input required name="addGuest.addGuestNameLabel" ng-model="addGuest.addGuestName" ng-disabled="messageLoading" />
 			</md-input-container>
 			<md-input-container class="formFields md-block" flex="30" flex-gt-sm>
 				<label ng-bind="addGuest.addGuestAgeLabel"></label>
-				<input required name="addGuest.addGuestAgeLabel" type="number" ng-model="addGuest.addGuestAge" />
+				<input required name="addGuest.addGuestAgeLabel" type="number" ng-model="addGuest.addGuestAge" ng-disabled="messageLoading" />
 			</md-input-container>
 		</div>
 		<md-input-container class="formFields md-block" flex="100">
 			<label>Observa&ccedil;&otilde;es</label>
-			<textarea ng-model="guest.guestNotes" md-maxlength="250" rows="3"> </textarea>
+			<textarea ng-model="guest.guestNotes" md-maxlength="250" rows="3" ng-disabled="messageLoading"> </textarea>
 		</md-input-container>
 		<div layout-gt-sm="row" layout-align="space-around center">
-			<md-button class="md-raised md-primary" type="submit">Confirmar Convidados</md-button>
+			<md-button class="md-raised md-primary" type="submit" ng-disabled="messageLoading">Confirmar Convidados</md-button>
 			<md-button class="md-raised md-primary"
-				ng-click="cancelConfirmation($event)">Cancelar
-			Confirma&ccedil;&atilde;o</md-button>
+				ng-click="cancelConfirmation($event)" ng-disabled="messageLoading">Cancelar Confirma&ccedil;&atilde;o</md-button>
 		</div>
 	</form>
 </div>

@@ -1,17 +1,18 @@
 <md-content layout-padding md-theme="default" ng-cloak class="transparentField" ng-init="loadMessages()">
+<md-progress-circular md-mode="indeterminate" ng-show="messageLoading" class="loadingComponent" md-diameter="70"></md-progress-circular>
 	<form id="messageForm">
 		<section layout="row" layout-sm="column" layout-align="center center">
 			<md-input-container class="formFields messageField md-block">
 				<label>Mensagem</label>
-				<textarea ng-model="message.messageContent" md-maxlength="300" rows="5" md-no-autogrow> </textarea>
+				<textarea ng-model="message.messageContent" md-maxlength="300" rows="5" md-no-autogrow ng-disabled="messageLoading"> </textarea>
 			</md-input-container>
 		</section>
 		<section layout="row" layout-sm="column" layout-align="space-between start">
 			<md-input-container class="formFields signField md-block">
 				<label>Assinatura</label>
-				<input ng-model="message.messageAuthor" />
+				<input ng-model="message.messageAuthor" ng-disabled="messageLoading" />
 			</md-input-container>
-			<md-button class="sendMsgField md-raised md-primary" ng-click="sendMessage()">Enviar</md-button>
+			<md-button class="sendMsgField md-raised md-primary" ng-click="sendMessage()" ng-disabled="messageLoading">Enviar</md-button>
 		</section>
 	</form>
 	<div>

@@ -1,5 +1,5 @@
 WeddingApp.controller('MessageCoupleCtrl',
-				['$scope','$http', function($scope, $http) {
+				['$scope','$http', '$interval', function($scope, $http, $interval) {
 	
 	$scope.message = {
 			messageContent : null,
@@ -7,9 +7,13 @@ WeddingApp.controller('MessageCoupleCtrl',
 			messageCreate : null
 	};
 	
+	$scope.messageLoading = false;
+	
 	$scope.messageList = [];
 	
 	$scope.sendMessage = function() {
+		
+		$scope.messageLoading = true;
 		
 		var msg = {
 				messageContent : $scope.message.messageContent,
@@ -28,19 +32,22 @@ WeddingApp.controller('MessageCoupleCtrl',
 					messageAuthor : null,
 					messageCreate : null
 			};
+			$scope.messageLoading = false;
 		}).error(function(data) {
+			$scope.messageLoading = false;
 			console.log('ERRO: ' + data);
 		});
 		
-		console.log('MENSAGEM ENVIADA COM SUCESSO!');
 	};
 	
 	$scope.loadMessages = function() {
+		$scope.messageLoading = true;
 		$http({
 			method : 'GET',
 			url : 'messageToCouple/getAll'
 		}).success(function(data) {
 			$scope.messageList = data;
+			$scope.messageLoading = false;
 		}).error(function(data) {
 			
 		});

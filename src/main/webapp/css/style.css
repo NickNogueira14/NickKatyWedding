@@ -19,6 +19,12 @@ body {
 	border-radius: 20px;
 }
 
+.loadingComponent {
+	position: absolute;
+	left: 50%;
+	top: 15%;
+}
+
 #emailConfirmation {
 	padding-bottom: 0px;
 	margin-top: 7px;
@@ -237,4 +243,11 @@ md-tab-item:hover {
 	height:300px;
 	width: 450px;
 	float: right;
+}
+
+.aboutCoupleBody {
+	font-size: 20px;
+	text-align: justify;
+	max-width: 1000px;
+	margin: 0 auto;
 }

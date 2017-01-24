@@ -19,7 +19,8 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 	};
 	
 	$scope.showForm = false;
-	$scope.goHome = false;
+	$scope.goHome = true;
+	$scope.messageLoading = false;
 	
 	$scope.showAlert = function(ev) {
 		$mdDialog.show(
@@ -78,6 +79,8 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 	
 	$scope.guestConfirmation = function(){
 		
+		$scope.messageLoading = true;
+		
 		var guestConf = {
 				guestName : $scope.guest.guestName,
 				guestEmail : $scope.guest.guestEmail,
@@ -93,8 +96,14 @@ WeddingApp.controller('EmailConfirmationCtrl', ['$scope', '$mdDialog', '$http', 
 		}).success(function(data){
 			$scope.showSuccess();
 			resetFields();
+			
+			$scope.messageLoading = false;
+			
 		}).error(function(data){
 			console.log(data);
+			
+			$scope.messageLoading = false;
+			
 		});
 	};
 	
