@@ -6,8 +6,6 @@ package com.weddingapp.nickkaty.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.DatatypeConverter;
-
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,7 +26,7 @@ public final class RestGatewayClient {
 	
 	public static RestTemplate getOAuthTemplate() {
 		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
-		interceptors.add(new HeaderRequestInterceptor(Constants.SPOTIFY_HEADER_AUTH_KEY, new String(DatatypeConverter.parseBase64Binary(Constants.SPOTIFY_HEADER_AUTH_VALUE))));
+		interceptors.add(new HeaderRequestInterceptor(Constants.SPOTIFY_HEADER_AUTH_KEY, Constants.SPOTIFY_HEADER_AUTH_VALUE));
 		interceptors.add(new HeaderRequestInterceptor("Content-Type", "application/x-www-form-urlencoded"));
 		
 		RestTemplate template = new RestTemplate();
