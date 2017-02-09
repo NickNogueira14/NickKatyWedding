@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.weddingapp.nickkaty.resource;
+package com.weddingapp.nickkaty.resource.response;
 
 import java.io.Serializable;
 
@@ -18,9 +18,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class SpotifyOAuthTokenResource implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String access_token;
 	private String token_type;
+	private String scope;
 	private Integer expires_in;
 
 	/**
@@ -54,6 +55,21 @@ public class SpotifyOAuthTokenResource implements Serializable {
 	}
 
 	/**
+	 * @return the scope
+	 */
+	public String getScope() {
+		return scope;
+	}
+
+	/**
+	 * @param scope
+	 *            the scope to set
+	 */
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+
+	/**
 	 * @return the expires_in
 	 */
 	public Integer getExpires_in() {
@@ -75,8 +91,8 @@ public class SpotifyOAuthTokenResource implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "SpotifyOAuthTokenResource [access_token=" + access_token + ", token_type=" + token_type
-				+ ", expires_in=" + expires_in + "]";
+		return "SpotifyOAuthTokenResource [access_token=" + access_token + ", token_type=" + token_type + ", scope="
+				+ scope + ", expires_in=" + expires_in + "]";
 	}
 
 }
