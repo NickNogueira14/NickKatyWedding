@@ -58,7 +58,10 @@ public class SpotifyService implements ISpotifyService {
 		RestTemplate template = new RestTemplate();
 		template.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 		
-		String uri = "https://api.spotify.com/v1/users/" + Constants.SPOTIFY_USER_ID + "/playlists/" + Constants.SPOTIFY_PLAYLIST_ID + "/tracks?uris=spotify:track:2s4BsyV3KhhrtsdtNfzoqb";
+		String uri = "https://api.spotify.com/v1/users/" 
+					+ Constants.SPOTIFY_USER_ID + "/playlists/" 
+					+ Constants.SPOTIFY_PLAYLIST_ID + "/tracks?uris="
+					+ trackUri;
 		
 		MultiValueMap<String, String> header = new LinkedMultiValueMap<String, String>();
 		header.add(Constants.SPOTIFY_HEADER_AUTH_KEY, tokenType + " " + tokenId);

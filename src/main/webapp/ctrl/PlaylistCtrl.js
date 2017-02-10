@@ -1,5 +1,5 @@
 WeddingApp.controller('PlaylistCtrl',
-		['$scope','$http', function($scope, $http) {
+		['$scope','$http', '$mdDialog', function($scope, $http, $mdDialog) {
 
 			$scope.obj = {
 					selectType : '',
@@ -90,6 +90,8 @@ WeddingApp.controller('PlaylistCtrl',
 			}
 
 			$scope.search = function() {
+				$scope.messageLoading = true;
+				
 				resetSpotifyFields();
 				$scope.searchUrl = 'https://api.spotify.com/v1/search?q='
 									+ $scope.obj.selectFilter
@@ -112,11 +114,14 @@ WeddingApp.controller('PlaylistCtrl',
 								console.log('Nao caiu no IF: ' + $scope.data.selectType);
 							}
 						}
+						
+						$scope.messageLoading = false;
 				}).error(function(data) {
 						console.log('ERRO:');
 						console.log($scope.obj.selectFilter);
 						console.log($scope.obj.selectType);
 						console.log(data);
+						$scope.messageLoading = false;
 				});
 			};
 
@@ -282,6 +287,8 @@ WeddingApp.controller('PlaylistCtrl',
 			};
 
 			$scope.getAlbumsFromArtist = function(artist) {
+				$scope.messageLoading = true;
+				
 				resetSpotifyFields();
 				$scope.artistAlbumsUrl = 'https://api.spotify.com/v1/artists/'
 											+ artist.artistId
@@ -292,17 +299,19 @@ WeddingApp.controller('PlaylistCtrl',
 					url : $scope.artistAlbumsUrl
 				}).success(function(data) {
 						convertToAlbumObject(data.items);
+						$scope.messageLoading = false;
 				}).error(function(data) {
 						console.log('ERRO:');
 						console.log($scope.obj.selectFilter);
 						console.log($scope.obj.selectType);
 						console.log(data);
+						$scope.messageLoading = false;
 				});
-				
-				console.log(artist.artistId);
 			}
 
 			$scope.getTracksFromAlbum = function(album) {
+				$scope.messageLoading = true;
+				
 				resetSpotifyFields();
 				$scope.albumTracksUrl = 'https://api.spotify.com/v1/albums/'
 											+ album.albumId
@@ -314,15 +323,19 @@ WeddingApp.controller('PlaylistCtrl',
 				}).success(function(data) {
 						$scope.album = album;
 						convertToTrackObject(data.items);
+						$scope.messageLoading = false;
 				}).error(function(data) {
 						console.log('ERRO:');
 						console.log($scope.obj.selectFilter);
 						console.log($scope.obj.selectType);
 						console.log(data);
+						$scope.messageLoading = false;
 				});
 			}
 			
 			$scope.getTopTracksFromArtist = function(artist) {
+				$scope.messageLoading = true;
+				
 				resetSpotifyFields();
 				$scope.topTracksUrl = 'https://api.spotify.com/v1/artists/'
 										+ artist.artistId
@@ -333,29 +346,40 @@ WeddingApp.controller('PlaylistCtrl',
 					url : $scope.topTracksUrl
 				}).success(function(data) {
 						convertToTrackObject(data.tracks);
+						$scope.messageLoading = false;
 				}).error(function(data) {
 						console.log('ERRO:');
 						console.log($scope.obj.selectFilter);
 						console.log($scope.obj.selectType);
 						console.log(data);
+						$scope.messageLoading = false;
 				});
 			}
 			
 			$scope.addTrackToPlaylist = function(track) {
-				
-				var param = JSON.stringify(track);
+				$scope.messageLoading = true;
 				
 				$http({
 					method : 'GET',
-					url : 'playlist/addTrackIntoPlaylist',
-					track : param
+					url : 'playlist/addTrackIntoPlaylist/' + track.trackSpotifyUri
 				}).success(function(data) {
-					console.log(data);
+					$scope.messageLoading = false;
+					$scope.showAlert('Música adicionada com sucesso!')
 				}).error(function(data) {
-					console.log(data);
+					$scope.messageLoading = false;
+					$scope.showAlert('Houve uma falha no sistema! Atualize a págna e tente novamente.')
 				});
 				
-				console.log("ADD PLAYLIST" + track.trackName + track.trackSpotifyUri);
+			}
+			
+			$scope.showAlert = function(text) {
+				$mdDialog.show(
+					$mdDialog.alert()
+						.clickOutsideToClose(true)
+						.title(text)
+						.ariaLabel(text)
+						.ok('OK')
+				);
 			}
 
 } ]);

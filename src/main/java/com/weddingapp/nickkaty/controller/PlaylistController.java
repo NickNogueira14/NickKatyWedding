@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,14 +56,14 @@ public class PlaylistController {
 	}
 	
 	@ResponseBody	
-	@RequestMapping(value = "/addTrackIntoPlaylist", method = RequestMethod.GET, produces = "text/plain")
-	public String addTrackIntoPlaylist(SpotifyTrackResource track) {
+	@RequestMapping(value = "/addTrackIntoPlaylist/{spotifyUri}", method = RequestMethod.GET, produces = "text/plain")
+	public String addTrackIntoPlaylist(@PathVariable String spotifyUri) {
 		
 		SpotifyOAuthTokenResource oAuthToken = spotify.getSpotifyClientCredentials();
 		
-		String resp = spotify.addTrackToPlaylist(oAuthToken.getAccess_token(), oAuthToken.getToken_type(), track.getTrackSpotifyUri());
+		String resp = spotify.addTrackToPlaylist(oAuthToken.getAccess_token(), oAuthToken.getToken_type(), spotifyUri);
 		
-		return track.toString();
+		return spotifyUri;
 	}
 	
 	@ResponseBody

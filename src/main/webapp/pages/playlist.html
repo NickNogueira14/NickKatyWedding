@@ -1,7 +1,8 @@
 <md-content layout="row" ng-cloak style="width: 900px;">
+	<md-progress-circular md-mode="indeterminate" ng-show="messageLoading" class="loadingComponent" md-diameter="70"></md-progress-circular>
     <div class="playlistSize" style="background-color: #181818;">
         <div>
-	        <md-radio-group ng-model="obj.selectType" class="md-primary" layout="row" 
+	        <md-radio-group ng-model="obj.selectType" class="md-primary" layout="row" ng-disabled="messageLoading"
 	        		layout-align="space-around center" style="margin-bottom: 0px;" ng-change="resetSearch()">
 		        <md-radio-button value="artist">Artista</md-radio-button>
 		        <md-radio-button value="album">Album</md-radio-button>
@@ -11,9 +12,9 @@
 	    <div layout="row" layout-align="end center" class="formFields">
 		    <md-input-container style="width: 100%;">
 		       <label>Search</label>
-		       <input ng-model="obj.selectFilter" ng-enter="search()">
+		       <input ng-model="obj.selectFilter" ng-enter="search()" ng-disabled="messageLoading">
 		    </md-input-container>
-		    <md-button class="md-raised md-primary" ng-click="search()">Buscar</md-button>
+		    <md-button class="md-raised md-primary" ng-click="search()" ng-disabled="messageLoading">Buscar</md-button>
 	    </div>
 	    <div class="spotifyList" ng-show="artistList.length">
 	       	<md-list>
@@ -68,5 +69,5 @@
     </div>
 	<iframe
 	    src="https://embed.spotify.com/?uri=spotify%3Auser%3A12173042140%3Aplaylist%3A10czaA6pcbectFgUwMLMlK"
-	    class="playlistSize" frameborder="0" allowtransparency="true"></iframe>
+	    class="playlistSize" frameborder="0" allowtransparency="true" id="spotifyPlaylist"></iframe>
 </md-content>
