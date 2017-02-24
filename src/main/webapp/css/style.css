@@ -231,23 +231,19 @@ md-tab-item:hover {
 	padding: 8px;
 }
 
-.imgPictureWidth {
-	width: 100%;
-}
-
-.imgPictureHeight {
-	height: 100%;
-}
-
-.picturebox {
-	height:300px;
-	width: 450px;
-	float: right;
-}
-
 .aboutCoupleBody {
 	font-size: 20px;
 	text-align: justify;
 	max-width: 1000px;
 	margin: 0 auto;
+}
+
+.pictureThumbnail {
+	width : 200px;
+	min-width: 200px;
+}
+
+.photoDialog {
+	max-height: 90% !important;
+	max-width: 90% !important;
 }

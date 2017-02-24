@@ -1,23 +1,6 @@
-<md-content layout-padding layout-align="center center" md-theme="default" class="transparentField">
-	<div>
-		<h1>Possui uma foto com os noivos? Compartilhe-a aqui!</h1>
-	</div>
-	
-<!-- 	<input id="fileInput"  class="ng-hide"> -->
-<!-- 	<md-button id="uploadButton" type="file" class="md-raised md-primary" ng-click="apsUploadFileLink()" aria-label="attach_file">Choose file </md-button> -->
-	<div class="formFields">
-		<md-input-container  md-no-float>
-			<input id="textInput" type="file" class="ng-hide" aria-label="Nome do arquivo selecionado" onchange="angular.element(this).scope().getFileName()" />
-		</md-input-container>
-		<md-button id="uploadButton" ng-click="selectFile()" aria-label="Escolher Foto" class="md-raised md-primary">Escolher Foto</md-button>
-		<md-input-container md-no-float>
-			<input id="fileName" ng-model="fileName" class="formFields md-block" ng-click="selectFile()" 
-					placeholder="Nenhum arquivo selecionado" ng-readonly="true" aria-label="Nome do arquivo selecionado" />
-		</md-input-container>
-		<section class="formFields picturebox">
-			<img id="imageSelected" ng-class="{'imgPictureWidth': width >= height, 'imgPictureHeight': width <= height}"></img>
-		</section>
-	</div>
-	<a data-pin-do="embedBoard" data-pin-lang="pt" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80" 
-		href="https://br.pinterest.com/viniceranogueir/nick-e-katy/"></a>
+<md-content layout-padding layout="row" layout-align="center center" md-theme="default" class="transparentField"
+			flex layout-wrap>
+	<md-card ng-repeat="photo in photoList" class="pictureThumbnail" ng-click="showPhotoBig($event, photo)">
+    	<img ng-src="{{photo.path}}" class="md-card-image" alt="Washed Out">
+    </md-card>
 </md-content>
