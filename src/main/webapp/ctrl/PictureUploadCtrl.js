@@ -1,16 +1,17 @@
 WeddingApp.controller('PictureUploadCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog) {
 	
 	$scope.photoList = [
-	                    {index : 0, path : '../images/pictures/picture01.jpg'},
-	                    {index : 1, path : '../images/pictures/picture02.jpg'},
-	                    {index : 2, path : '../images/pictures/picture03.jpg'},
-	                    {index : 3, path : '../images/pictures/picture04.jpg'},
-	                    {index : 4, path : '../images/pictures/picture05.jpg'},
-	                    {index : 5, path : '../images/pictures/picture06.jpg'},
-	                    {index : 6, path : '../images/pictures/picture07.jpg'},
-	                    {index : 7, path : '../images/pictures/picture08.jpg'},
-	                    {index : 8, path : '../images/pictures/picture09.jpg'},
-	                    {index : 9, path : '../images/pictures/picture10.jpg'}
+	                    {index : 0, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture01.JPG'},
+	                    {index : 1, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture02.JPG'},
+	                    {index : 2, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture03.JPG'},
+	                    {index : 3, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture04.JPG'},
+	                    {index : 4, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture05.JPG'},
+	                    {index : 5, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture06.JPG'},
+	                    {index : 6, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture07.JPG'},
+	                    {index : 7, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture08.JPG'},
+	                    {index : 8, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture09.JPG'},
+	                    {index : 9, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture10.JPG'},
+	                    {index : 10, path : 'https://storage.googleapis.com/nick-katy.appspot.com/pictures/picture11.jpg'}
 	                    ];
 	
 	$scope.picture = null;
