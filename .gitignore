@@ -12,3 +12,5 @@ target/
 build/
 *.class
 .settings/
+*.iml
+.idea/

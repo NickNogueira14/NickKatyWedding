@@ -244,6 +244,23 @@ md-tab-item:hover {
 }
 
 .photoDialog {
-	max-height: 90% !important;
-	max-width: 90% !important;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.photoDialogContent {
+    overflow: hidden;
+}
+
+.md-dialog-content {
+    padding: 0px;
+    overflow: hidden;
+}
+
+.photoDialogContentDiv {
+    padding: 0px !important;
+}
+
+.imgOrientation {
+    image-orientation: from-image;
 }
