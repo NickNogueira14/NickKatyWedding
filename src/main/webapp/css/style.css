@@ -229,6 +229,7 @@ md-tab-item:hover {
 .aboutWeddingButton {
 	height: 250px;
 	padding: 8px;
+	width: 50%;
 }
 
 .aboutCoupleBody {

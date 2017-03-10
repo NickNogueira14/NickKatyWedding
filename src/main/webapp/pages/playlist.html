@@ -1,73 +1,78 @@
-<md-content layout="row" ng-cloak style="width: 900px;">
-	<md-progress-circular md-mode="indeterminate" ng-show="messageLoading" class="loadingComponent" md-diameter="70"></md-progress-circular>
-    <div class="playlistSize" style="background-color: #181818;">
-        <div>
-	        <md-radio-group ng-model="obj.selectType" class="md-primary" layout="row" ng-disabled="messageLoading"
-	        		layout-align="space-around center" style="margin-bottom: 0px;" ng-change="resetSearch()">
-		        <md-radio-button value="artist">Artista</md-radio-button>
-		        <md-radio-button value="album">Album</md-radio-button>
-		        <md-radio-button value="track">M&uacute;sica</md-radio-button>
-		    </md-radio-group>
+<md-content layout-padding md-theme="default" class="transparentField">
+	<div style="text-align: center;">
+		<h1>Sugira uma m&uacute;sica para tocar em nossa festa</h1>
+	</div>
+	<md-content layout="row" ng-cloak class="transparentField">
+		<md-progress-circular md-mode="indeterminate" ng-show="messageLoading" class="loadingComponent" md-diameter="70"></md-progress-circular>
+	    <div class="playlistSize" style="background-color: #181818;">
+	        <div>
+		        <md-radio-group ng-model="obj.selectType" class="md-primary" layout="row" ng-disabled="messageLoading"
+		        		layout-align="space-around center" style="margin-bottom: 0px;" ng-change="resetSearch()">
+			        <md-radio-button value="artist">Artista</md-radio-button>
+			        <md-radio-button value="album">Album</md-radio-button>
+			        <md-radio-button value="track">M&uacute;sica</md-radio-button>
+			    </md-radio-group>
+		    </div>
+		    <div layout="row" layout-align="end center" class="formFields">
+			    <md-input-container style="width: 100%;">
+			       <label>Search</label>
+			       <input ng-model="obj.selectFilter" ng-enter="search()" ng-disabled="messageLoading">
+			    </md-input-container>
+			    <md-button class="md-raised md-primary" ng-click="search()" ng-disabled="messageLoading">Buscar</md-button>
+		    </div>
+		    <div class="spotifyList" ng-show="artistList.length">
+		       	<md-list>
+		           	<md-list-item ng-repeat="item in artistList track by item.artistId" ng-click="" class="noright listStyle">
+		               	<img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
+		               	<div class="spotifyArtistName">
+		               		<h3 ng-bind="item.artistName" class="spotifyAlbumText"></h3>
+		               	</div>
+		               	<div class="iconsList">
+		               		<md-button class="material-icons spotifyListButton" title="Visualizar Albuns" ng-click="getAlbumsFromArtist(item)" 
+		               					aria-label="Visualizar Albuns do Artista">album</md-button>
+		               		<md-button class="material-icons spotifyListButton" title="Visualizar Musicas mais populares" 
+		               					ng-click="getTopTracksFromArtist(item)" aria-label="Visualizar Musicas mais populares">queue_music</md-button>
+		               	</div>
+		           	</md-list-item>
+		       	</md-list>
+		    </div>
+		    <div class="spotifyList" ng-show="albumList.length">
+		       	<md-list>
+		           	<md-list-item ng-repeat="item in albumList track by item.albumId" ng-click="" class="noright listStyle">
+		               	<img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
+		               	<div class="spotifyArtistName">
+		               		<h3 ng-bind="item.albumName" class="spotifyAlbumText"></h3>
+		               		<p ng-bind="item.artistName" class="spotifyAlbumText"></p>
+		               	</div>
+		               	<div class="iconsList">
+		               		<md-button class="material-icons spotifyListButton" title="Visualizar Músicas" ng-click="getTracksFromAlbum(item)" 
+		               					aria-label="Visualizar Músicas do Album">queue_music</md-button>
+		               	</div>
+		           	</md-list-item>
+		       	</md-list>
+		    </div>
+		    <div class="spotifyList" ng-show="trackList.length">
+		       	<md-list>
+		           	<md-list-item ng-repeat="item in trackList track by item.trackId" ng-click="" class="noright listStyle">
+		               	<img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
+		               	<div class="spotifyArtistName">
+		               		<h3 ng-bind="item.trackName" class="spotifyAlbumText"></h3>
+		               		<p ng-bind="item.albumName" class="spotifyAlbumText"></p>
+		               		<p ng-bind="item.artistName" class="spotifyAlbumText"></p>
+		               	</div>
+		               	<div class="iconsList">
+		               		<md-button ng-href="{{item.trackExternalUrl}}" target="_blank" aria-label="Abrir com Spotify" class="spotifyListButton">
+		               			<img ng-src="../images/icons/spotify.png" class="spotifyLogo" />
+		               		</md-button>
+		               		<md-button class="material-icons spotifyListButton" title="Add to Playlist" ng-click="addTrackToPlaylist(item)" 
+		               					aria-label="Adicionar na Playlist">playlist_add</md-button>
+		               	</div>
+		           	</md-list-item>
+		       	</md-list>
+		    </div>
 	    </div>
-	    <div layout="row" layout-align="end center" class="formFields">
-		    <md-input-container style="width: 100%;">
-		       <label>Search</label>
-		       <input ng-model="obj.selectFilter" ng-enter="search()" ng-disabled="messageLoading">
-		    </md-input-container>
-		    <md-button class="md-raised md-primary" ng-click="search()" ng-disabled="messageLoading">Buscar</md-button>
-	    </div>
-	    <div class="spotifyList" ng-show="artistList.length">
-	       	<md-list>
-	           	<md-list-item ng-repeat="item in artistList track by item.artistId" ng-click="" class="noright listStyle">
-	               	<img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
-	               	<div class="spotifyArtistName">
-	               		<h3 ng-bind="item.artistName" class="spotifyAlbumText"></h3>
-	               	</div>
-	               	<div class="iconsList">
-	               		<md-button class="material-icons spotifyListButton" title="Visualizar Albuns" ng-click="getAlbumsFromArtist(item)" 
-	               					aria-label="Visualizar Albuns do Artista">album</md-button>
-	               		<md-button class="material-icons spotifyListButton" title="Visualizar Musicas mais populares" 
-	               					ng-click="getTopTracksFromArtist(item)" aria-label="Visualizar Musicas mais populares">queue_music</md-button>
-	               	</div>
-	           	</md-list-item>
-	       	</md-list>
-	    </div>
-	    <div class="spotifyList" ng-show="albumList.length">
-	       	<md-list>
-	           	<md-list-item ng-repeat="item in albumList track by item.albumId" ng-click="" class="noright listStyle">
-	               	<img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
-	               	<div class="spotifyArtistName">
-	               		<h3 ng-bind="item.albumName" class="spotifyAlbumText"></h3>
-	               		<p ng-bind="item.artistName" class="spotifyAlbumText"></p>
-	               	</div>
-	               	<div class="iconsList">
-	               		<md-button class="material-icons spotifyListButton" title="Visualizar Músicas" ng-click="getTracksFromAlbum(item)" 
-	               					aria-label="Visualizar Músicas do Album">queue_music</md-button>
-	               	</div>
-	           	</md-list-item>
-	       	</md-list>
-	    </div>
-	    <div class="spotifyList" ng-show="trackList.length">
-	       	<md-list>
-	           	<md-list-item ng-repeat="item in trackList track by item.trackId" ng-click="" class="noright listStyle">
-	               	<img ng-src="{{item.imgSrc}}" class="spotifyArtistImg" />
-	               	<div class="spotifyArtistName">
-	               		<h3 ng-bind="item.trackName" class="spotifyAlbumText"></h3>
-	               		<p ng-bind="item.albumName" class="spotifyAlbumText"></p>
-	               		<p ng-bind="item.artistName" class="spotifyAlbumText"></p>
-	               	</div>
-	               	<div class="iconsList">
-	               		<md-button ng-href="{{item.trackExternalUrl}}" target="_blank" aria-label="Abrir com Spotify" class="spotifyListButton">
-	               			<img ng-src="../images/icons/spotify.png" class="spotifyLogo" />
-	               		</md-button>
-	               		<md-button class="material-icons spotifyListButton" title="Add to Playlist" ng-click="addTrackToPlaylist(item)" 
-	               					aria-label="Adicionar na Playlist">playlist_add</md-button>
-	               	</div>
-	           	</md-list-item>
-	       	</md-list>
-	    </div>
-    </div>
-	<iframe
-	    src="https://embed.spotify.com/?uri=spotify%3Auser%3A12173042140%3Aplaylist%3A10czaA6pcbectFgUwMLMlK"
-	    class="playlistSize" frameborder="0" allowtransparency="true" id="spotifyPlaylist"></iframe>
+		<iframe
+		    src="https://embed.spotify.com/?uri=spotify%3Auser%3A12173042140%3Aplaylist%3A10czaA6pcbectFgUwMLMlK"
+		    class="playlistSize" frameborder="0" allowtransparency="true" id="spotifyPlaylist"></iframe>
+	</md-content>
 </md-content>
