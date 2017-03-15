@@ -364,20 +364,21 @@ WeddingApp.controller('PlaylistCtrl',
 					url : 'playlist/addTrackIntoPlaylist/' + track.trackSpotifyUri
 				}).success(function(data) {
 					$scope.messageLoading = false;
-					$scope.showAlert('Música adicionada com sucesso!')
+					$scope.showAlert('Sua música foi adicionada com sucesso!', 'Para visualizar sua música aguarde alguns segundos e atualize a página.');
 				}).error(function(data) {
 					$scope.messageLoading = false;
-					$scope.showAlert('Houve uma falha no sistema! Atualize a págna e tente novamente.')
+					$scope.showAlert('Houve uma falha no sistema!', 'Atualize a página e tente novamente.');
 				});
 				
 			}
 			
-			$scope.showAlert = function(text) {
+			$scope.showAlert = function(title, text) {
 				$mdDialog.show(
 					$mdDialog.alert()
 						.clickOutsideToClose(true)
-						.title(text)
-						.ariaLabel(text)
+						.title(title)
+						.textContent(text)
+						.ariaLabel(title)
 						.ok('OK')
 				);
 			}
