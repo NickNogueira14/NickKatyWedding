@@ -56,8 +56,13 @@ public class ConfirmationController {
     @ResponseBody
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public List<Guest> findAll() {
+    	
+    	List<Guest> guestList = guestService.findAll();
+    	for(Guest g : guestList) {
+    		g.setAdditionalGuestsList(additionalGuestService.findByMainGuest(g.getGuestKey()));
+    	}
 
-        return guestService.findAll();
+        return guestList;
     }
 
 }
